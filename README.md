@@ -4,3 +4,4 @@ Automating code push notifications from GitHub to Slack using Azure DevOps Pipel
 
 Azure DevOps and Slack integration successfully configured.
 Last updated: Azure DevOps Slack automation is working.
+Portfolio update: Azure DevOps + Slack integration tested.
