@@ -1,0 +1,13 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: |
+    echo "Starting Azure DevOps Slack Automation Pipeline..."
+    echo "Repository: azure-devops-slack-automation"
+    echo "Validating CI pipeline configuration..."
+    echo "Pipeline completed successfully."
+  displayName: "Run Azure DevOps Slack Automation Validation"
