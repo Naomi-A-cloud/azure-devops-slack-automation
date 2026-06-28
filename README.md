@@ -1,2 +1,2 @@
 # azure-devops-slack-automation
-Automating GitHub, Azure DevOps Pipelines, and Slack notifications using YAML, CI/CD, and Service Hooks.
+Automating code push notifications from GitHub to Slack using Azure DevOps Pipelines, YAML, Service Hooks, and secure webhook integration.
