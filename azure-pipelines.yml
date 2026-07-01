@@ -4,10 +4,18 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+- group: slack-secrets
+
 steps:
 - script: |
     echo "Starting Azure DevOps Slack Automation Pipeline..."
     echo "Repository: azure-devops-slack-automation"
     echo "Validating CI pipeline configuration..."
-    echo "Pipeline completed successfully."
   displayName: "Run Azure DevOps Slack Automation Validation"
+
+- script: |
+    curl -X POST -H 'Content-type: application/json' \
+    --data '{"text":"✅ Azure DevOps pipeline completed successfully for azure-devops-slack-automation."}' \
+    "$(SLACK_WEBHOOK_URL)"
+  displayName: "Send Slack Notification"
