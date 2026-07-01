@@ -1,56 +1,33 @@
-# Azure DevOps Slack Automation
-
-Automating GitHub, Azure DevOps Pipelines, and Slack notifications using YAML, CI/CD, and Azure Service Hooks.
-
----
+# 🚀 Azure DevOps Slack Automation
 
 ## Project Overview
 
-This project demonstrates how to automate software development workflows by integrating **GitHub**, **Azure DevOps Pipelines**, and **Slack**.
+This project demonstrates how I automated notifications between GitHub, Azure DevOps, and Slack using Azure Pipelines, YAML, Service Hooks, and secure secret management.
 
-Whenever new code is pushed to the GitHub repository:
+Whenever code is pushed to the GitHub repository, Azure DevOps automatically triggers a CI pipeline. Once the pipeline completes successfully, a notification is sent to a Slack channel, providing immediate visibility into the pipeline status without requiring anyone to manually check Azure DevOps.
 
-1. Azure DevOps automatically detects the change.
-2. The CI pipeline is triggered.
-3. The pipeline executes successfully.
-4. Azure DevOps sends a notification to Slack.
-5. Team members receive an instant update.
-
-This project simulates the type of automation commonly used by cloud engineering and DevOps teams to improve collaboration and deployment visibility.
+This project reflects a real-world DevOps workflow where automation improves collaboration, reduces manual effort, and provides faster feedback to engineering teams.
 
 ---
 
-## Architecture
+## Business Problem
 
-```text
-               +----------------+
-               |    GitHub      |
-               | Code Repository|
-               +--------+-------+
-                        |
-                  Git Push Event
-                        |
-                        ▼
-          +---------------------------+
-          | Azure DevOps Pipeline     |
-          | (YAML CI Pipeline)        |
-          +------------+--------------+
-                       |
-               Pipeline Execution
-                       |
-                       ▼
-          +---------------------------+
-          | Azure DevOps Service Hook |
-          +------------+--------------+
-                       |
-                 HTTP Webhook
-                       |
-                       ▼
-                +-------------+
-                |    Slack    |
-                | Notification|
-                +-------------+
-```
+Development teams often need to know immediately when new code has been integrated or when a pipeline has completed successfully. Without automated notifications, engineers must repeatedly check Azure DevOps, slowing collaboration and reducing visibility.
+
+This solution automates that process by delivering pipeline notifications directly into Slack.
+
+---
+
+## Solution
+
+I designed and implemented an automated CI notification workflow using:
+
+- GitHub as the source code repository
+- Azure DevOps Pipelines for Continuous Integration
+- YAML for pipeline configuration
+- Azure DevOps Variable Groups for secure secret management
+- Slack Incoming Webhooks for notifications
+- Azure DevOps Service Hooks for event-driven automation
 
 ---
 
@@ -58,107 +35,108 @@ This project simulates the type of automation commonly used by cloud engineering
 
 - Azure DevOps
 - Azure Pipelines
-- YAML
 - GitHub
+- Git
+- YAML
 - Slack
-- Azure Service Hooks
+- Incoming Webhooks
+- Azure DevOps Service Hooks
+- Azure DevOps Variable Groups
 - CI/CD
-- Ubuntu Hosted Agent
 
 ---
 
-## Pipeline Workflow
+# Solution Architecture
 
-The pipeline is configured using **azure-pipelines.yml**.
+> Architecture diagram coming next.
 
-Trigger:
+![Architecture](assets/architecture.png)
 
-```yaml
-trigger:
-- main
+---
+
+# Project Workflow
+
+```text
+Developer
+      │
+      ▼
+Push Code to GitHub
+      │
+      ▼
+GitHub Repository
+      │
+      ▼
+Azure DevOps Pipeline
+      │
+      ▼
+Runs YAML Pipeline
+      │
+      ▼
+Retrieves Slack Webhook from Variable Group
+      │
+      ▼
+Posts Notification to Slack Channel
 ```
 
-The pipeline runs automatically whenever code is pushed to the **main** branch.
+---
+
+## Security Best Practices
+
+One of the most important lessons from this project was learning how to protect sensitive credentials.
+
+Instead of hardcoding the Slack Webhook URL inside the YAML pipeline, I stored it securely inside an Azure DevOps Variable Group. This follows cloud security best practices by preventing secrets from being exposed in source code.
 
 ---
 
-## Project Features
+## Project Screenshots
 
-- Automated Continuous Integration (CI)
-- YAML-based pipeline configuration
-- GitHub repository integration
-- Azure DevOps pipeline execution
-- Slack notifications
-- Event-driven automation
-- Cloud workflow orchestration
+The repository includes screenshots showing:
 
----
-
-## Security
-
-Sensitive information such as the Slack Webhook URL is **never stored directly in the YAML pipeline**.
-
-Instead, secrets are securely managed using:
-
-- Azure DevOps Variable Groups
-- Secret Variables
-- Secure Pipeline Permissions
-
-This follows cloud security best practices by preventing credential exposure.
+- GitHub Repository
+- Azure Pipeline
+- Successful Pipeline Execution
+- Azure DevOps Service Hooks
+- Slack Notification
+- Variable Group Configuration
 
 ---
 
-## Learning Outcomes
+## Lessons Learned
 
-Through this project I gained hands-on experience with:
+This project helped me understand how cloud automation extends beyond simply running a pipeline.
 
-- Building Azure DevOps Pipelines
-- Writing YAML pipelines
-- Configuring Azure Service Hooks
-- Integrating GitHub repositories
-- Managing secure pipeline secrets
-- Automating notifications
-- Understanding CI workflow automation
+I gained practical experience with:
+
+- Building CI pipelines using YAML
+- Integrating GitHub with Azure DevOps
+- Configuring Azure DevOps Service Hooks
+- Automating Slack notifications
+- Managing secrets securely
+- Troubleshooting cloud integrations
+- Understanding how enterprise teams automate operational workflows
+
+One of the biggest takeaways was recognising the importance of secure secret management. Rather than exposing sensitive values in configuration files, I learned how Azure DevOps Variable Groups provide a safer way to manage credentials used by automation workflows.
 
 ---
 
 ## Future Improvements
 
-- Build stage
-- Test stage
-- Security scanning
-- Artifact publishing
-- Docker image builds
-- Azure deployment
-- Infrastructure as Code (Terraform)
-- Approval Gates
-- Multi-stage CI/CD pipeline
+Next, I plan to expand this project by implementing:
+
+- Azure Key Vault integration
+- Multi-stage CI/CD pipelines
+- Automated deployment to Azure
+- Infrastructure as Code using Terraform
+- Microsoft Teams notifications
+- Pipeline approvals and environments
 
 ---
 
-## Repository Structure
+## Repository
 
-```
-azure-devops-slack-automation/
-│
-├── azure-pipelines.yml
-├── README.md
-└── LICENSE
-```
+GitHub Repository:
 
----
-
-## Screenshots
-
-### Successful Azure DevOps Pipeline
-
-_Add screenshot here_
-
----
-
-### Slack Notification
-
-_Add screenshot here_
+https://github.com/Naomi-A-cloud/azure-devops-slack-automation
 
 ---
 
@@ -166,13 +144,6 @@ _Add screenshot here_
 
 **Naomi Nwogu**
 
-Aspiring Cloud Engineer | Cloud Security Enthusiast
+Aspiring Cloud Engineer | Cloud Security Enthusiast | Azure | GitHub | Automation | CI/CD
 
-- LinkedIn: https://www.linkedin.com/in/naomi-nwogu-8339a5215/
-- GitHub: https://github.com/Naomi-A-cloud
-
----
-
-## License
-
-This project is licensed under the MIT License.
+I am building practical cloud engineering projects to strengthen my skills in infrastructure, automation, cloud security, and DevOps while transitioning into a professional Cloud Engineering career.
